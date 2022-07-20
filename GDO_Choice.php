@@ -5,7 +5,7 @@ use GDO\Core\GDO;
 use GDO\Core\GDT_Object;
 use GDO\Core\GDT_AutoInc;
 use GDO\UI\GDT_Title;
-use GDO\DB\GDT_Index;
+use GDO\Core\GDT_Index;
 
 final class GDO_Choice extends GDO
 {
