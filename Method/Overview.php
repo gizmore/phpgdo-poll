@@ -2,6 +2,7 @@
 namespace GDO\Poll\Method;
 
 use GDO\Table\MethodQueryList;
+use GDO\Core\GDO;
 use GDO\Poll\GDO_Poll;
 
 /**
@@ -11,6 +12,6 @@ use GDO\Poll\GDO_Poll;
  */
 final class Overview extends MethodQueryList
 {
-	public function gdoTable() { return GDO_Poll::table(); }
+	public function gdoTable() : GDO { return GDO_Poll::table(); }
 
 }
