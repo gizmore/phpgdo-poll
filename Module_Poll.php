@@ -4,6 +4,8 @@ namespace GDO\Poll;
 use GDO\Core\GDO_Module;
 use GDO\Core\GDT_Checkbox;
 use GDO\User\GDT_Level;
+use GDO\UI\GDT_Page;
+use GDO\UI\GDT_Link;
 
 /**
  * Polls working in CLI and Web.
@@ -24,14 +26,6 @@ final class Module_Poll extends GDO_Module
 		];
 	}
 	
-	############
-	### Init ###
-	############
-	public function onLoadLanguage(): void
-	{
-		$this->loadLanguage('lang/poll');
-	}
-	
 	##############
 	### Config ###
 	##############
@@ -46,5 +40,21 @@ final class Module_Poll extends GDO_Module
 	public function cfgSidebar(): bool { return $this->getConfigValue('hook_sidebar'); }
 	public function cfgGuestVotes(): bool { return $this->getConfigValue('guest_votes'); }
 	public function cfgLevelPerPoll(): int { return $this->getConfigValue('level_per_poll'); }
+
+	############
+	### Init ###
+	############
+	public function onLoadLanguage(): void
+	{
+		$this->loadLanguage('lang/poll');
+	}
+	
+	public function onInitSidebar(): void
+	{
+		GDT_Page::instance()->leftBar()->addFields(
+			GDT_Link::make('link_polls')->textArgs(GDO_Poll::numActivePolls())
+				->href($this->href('Overview'))->icon('vote'),
+		);
+	}
 	
 }
