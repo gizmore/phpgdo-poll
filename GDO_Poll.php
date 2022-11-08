@@ -35,7 +35,7 @@ final class GDO_Poll extends GDO
 			GDT_Message::make('poll_description')->label('description'),
 			GDT_Language::make('poll_language')->notNull()->initialCurrent(),
 			
-			GDT_Checkbox::make('poll_multiple_choice')->notNull()->emptyLabel('choose_multiple_choice')->label('multiple_choice'),
+			GDT_UInt::make('poll_max_answers')->bytes(1)->notNull()->min(1)->tooltip('choose_multiple_choice')->initial('1')->label('multiple_choice'),
 			
 			GDT_Date::make('poll_expires')->notNull()->label('expires'),
 			
@@ -60,9 +60,14 @@ final class GDO_Poll extends GDO
 		return Time::getAge($this->gdoVar('poll_expires')) > 0;
 	}
 	
+	public function getMaxAnswers(): int
+	{
+		return $this->gdoVar('poll_max_answers');
+	}
+	
 	public function isMultipleChoice(): bool
 	{
-		return $this->gdoValue('poll_multiple_choice');
+		return $this->getMaxAnswers() > 1;
 	}
 	
 	private function descrColumn(): GDT_Message

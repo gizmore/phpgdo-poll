@@ -14,8 +14,8 @@ $li->addFields(
 );
 
 $li->actions()->addFields(
-	GDT_Link::make('view_poll')->href($gdo->hrefView()),
-	GDT_Link::make('answer_poll')->href($gdo->hrefAnswer()),
+	GDT_Link::make('view_poll')->href($gdo->hrefView())->text('btn_view'),
+	GDT_Link::make('answer_poll')->href($gdo->hrefAnswer())->text('btn_participate'),
 );
 
 echo $li->render();

@@ -61,7 +61,7 @@ final class Create extends MethodForm
 			$poll->gdoColumn('poll_question'),
 			$poll->gdoColumn('poll_description'),
 			$poll->gdoColumn('poll_expires')->minTimestamp(Application::$TIME + Time::ONE_WEEK),
-			$poll->gdoColumn('poll_multiple_choice'),
+			$poll->gdoColumn('poll_max_answers'),
 		);
 		
 		if ($modp->cfgGuestVotes())
