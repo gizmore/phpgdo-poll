@@ -138,6 +138,24 @@ final class GDO_Poll extends GDO
 		}
 	}
 	
+	#################
+	### Calculate ###
+	#################
+	public function recalculate(): void
+	{
+		$usercount = $this->calculateUserCount();
+		$this->saveVar('poll_usercount', $usercount);
+		foreach ($this->getChoices() as $choice)
+		{
+			$choice->recalculate($this, $usercount);
+		}
+	}
+	
+	public function calculateUserCount(): int
+	{
+		return GDO_PollAnswer::calculateUserCount($this);
+	}
+	
 	##############
 	### Static ###
 	##############

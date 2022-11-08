@@ -17,6 +17,10 @@ return [
 	'poll_you_answered' => 'Sie haben hierfür abgestimmt.',
 	'poll_you_questioned' => 'Sie haben hierfür nicht abgestimmt.',
 	
+	# GDT_Poll
+	'err_poll_expired' => 'Diese Umfrage ist beendet.',
+	'err_poll_only_expired' => 'Diese Umfrage ist noch nicht beendet.',
+	
 	# GDO_Choice
 	'answer' => 'Antwort',
 
@@ -33,6 +37,8 @@ return [
 	# Answer
 	'info_poll_answer' => 'Nehmen Sie Teil an dieser Umfrage. %s',
 	'info_mpoll_answer' => 'Nehmen Sie Teil an dieser Multiple-Choice-Umfrage. %s',
+	'please_vote' => 'Bitte abstimmen',
+	'msg_poll_voted' => 'Sie haben an Umfrage %s `%s` teilgenommen.',
 	
 	# CronjobOutcome
 	'mails_poll_finished' => '%s: %s answered',

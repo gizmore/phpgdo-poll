@@ -12,6 +12,10 @@ use GDO\User\GDO_User;
 use GDO\UI\GDT_HTML;
 use GDO\Poll\GDT_PollOutcome;
 use GDO\Poll\GDT_PollAnswer;
+use GDO\Core\GDT_Hook;
+use GDO\Util\Arrays;
+use GDO\Poll\GDO_PollAnswer;
+use GDO\Poll\GDT_PollResults;
 
 final class Answer extends MethodForm
 {
@@ -51,14 +55,8 @@ final class Answer extends MethodForm
 		}
 		$form->text($key, [$poll->getAnsweredText($user)]);
 		$form->addFields(
-			GDT_HTML::make('poll_descr')->var($poll->renderDescription()),
+			GDT_PollResults::make('result')->gdo($poll),
 		);
-		foreach ($poll->getChoices() as $choice)
-		{
-			$form->addField(
-				GDT_PollOutcome::make("choice_{$choice->getID()}")->gdo($choice)
-			);
-		}
 		
 		$form->addFields(
 			GDT_PollAnswer::make('answer')->gdo($poll),
@@ -77,6 +75,34 @@ final class Answer extends MethodForm
 		$user = GDO_User::current();
 		$isUpdate = $poll->hasAnswered($user);
 		
+		/** @var $answers \GDO\Poll\GDO_PollChoice[] **/
+		$answers = Arrays::arrayed($form->getFormValue('answer'));
+		
+		GDO_PollAnswer::clearPollFor($user, $poll);
+		
+		foreach ($answers as $choice)
+		{
+			GDO_PollAnswer::blank([
+				'answer_user' => $user->getID(),
+				'answer_choice' => $choice->getID(),
+			])->insert();
+		}
+		
+		$poll->recalculate();
+		
+		if ($isUpdate)
+		{
+			GDT_Hook::callHook('PollVoteUpdated', $user, $poll, $answers);
+		}
+		else
+		{
+			GDT_Hook::callHook('PollVoteCreated', $user, $poll, $answers);
+		}
+		
+		return $this->redirectMessage('msg_poll_voted', [
+			$poll->getID(),
+			$poll->renderTitle(),
+		], $poll->hrefView());
 	}
 	
 }

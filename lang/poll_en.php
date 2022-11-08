@@ -18,6 +18,10 @@ return [
 	'poll_you_answered' => 'You have voted for this.',
 	'poll_you_questioned' => 'You have not voted for this.',
 	
+	# GDT_Poll
+	'err_poll_expired' => 'This poll is alredy expired.',
+	'err_poll_only_expired' => 'This poll is not expired.',
+	
 	# GDO_Choice
 	'answer' => 'Answer',
 	
@@ -34,6 +38,8 @@ return [
 	# Answer
 	'info_poll_answer' => 'Participate in this poll. %s',
 	'info_mpoll_answer' => 'Participate in this multiple choice poll. %s',
+	'please_vote' => 'Please vote',
+	'msg_poll_voted' => 'You have voted for Poll#%s - %s',
 	
 	# CronjobOutcome
 	'mails_poll_finished' => '%s: %s answered',

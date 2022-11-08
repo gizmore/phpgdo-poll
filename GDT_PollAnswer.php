@@ -19,6 +19,7 @@ final class GDT_PollAnswer extends GDT_Select
 	{
 		parent::__construct();
 		$this->icon('vote');
+		$this->emptyInitial('please_vote');
 	}
 	
 	public function getPoll(): GDO_Poll

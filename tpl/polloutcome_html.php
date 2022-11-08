@@ -3,16 +3,16 @@ namespace GDO\Poll\tpl;
 /** @var $field \GDO\Poll\GDT_PollOutcome **/
 /** @var $gdo \GDO\Poll\GDO_PollChoice **/
 ?>
-<div class="poll-option">
-  <label><?=$gdo->renderTitle()?></label>
+<div class="gdt-poll-outcome">
+  <label><?=$field->renderOwnVoteIcon()?><?=$gdo->renderTitle()?></label>
   <table>
     <tr>
       <td><?=$gdo->getAmount()?></td>
       <td>
-        <span></span>
-        <span style="width: 25%;"></span>
+        <em></em>
+        <em style="width: <?=$gdo->getPercent()?>%;"></em>
       </td>
-      <td>25%</td>
+      <td><?=$gdo->renderPercent()?></td>
     </tr>
   </table>
 </div>
