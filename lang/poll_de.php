@@ -14,6 +14,7 @@ return [
 	'multiple_choice' => 'Mehrfachantworten',
 	'poll_guests' => 'Gastantworten',
 	'poll_level' => 'Nutzerlevel zum Abstimmen',
+	'poll_usercount' => 'Teilnehmer',
 	'poll_you_answered' => 'Sie haben hierfür abgestimmt.',
 	'poll_you_questioned' => 'Sie haben hierfür nicht abgestimmt.',
 	

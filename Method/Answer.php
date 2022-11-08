@@ -9,14 +9,18 @@ use GDO\Poll\GDO_Poll;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Submit;
 use GDO\User\GDO_User;
-use GDO\UI\GDT_HTML;
-use GDO\Poll\GDT_PollOutcome;
 use GDO\Poll\GDT_PollAnswer;
 use GDO\Core\GDT_Hook;
 use GDO\Util\Arrays;
 use GDO\Poll\GDO_PollAnswer;
 use GDO\Poll\GDT_PollResults;
 
+/**
+ * Vote on polls.
+ * 
+ * @author gizmore
+ * @version 7.0.1
+ */
 final class Answer extends MethodForm
 {
 	
@@ -92,11 +96,11 @@ final class Answer extends MethodForm
 		
 		if ($isUpdate)
 		{
-			GDT_Hook::callHook('PollVoteUpdated', $user, $poll, $answers);
+			GDT_Hook::callWithIPC('PollVoteUpdated', $user, $poll, $answers);
 		}
 		else
 		{
-			GDT_Hook::callHook('PollVoteCreated', $user, $poll, $answers);
+			GDT_Hook::callWithIPC('PollVoteCreated', $user, $poll, $answers);
 		}
 		
 		return $this->redirectMessage('msg_poll_voted', [

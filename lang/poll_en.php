@@ -15,6 +15,7 @@ return [
 	'multiple_choice' => 'Multiple Choice',
 	'poll_guests' => 'Guest-Answers',
 	'poll_level' => 'Userlevel to vote',
+	'poll_usercount' => 'Participants',
 	'poll_you_answered' => 'You have voted for this.',
 	'poll_you_questioned' => 'You have not voted for this.',
 	
