@@ -9,6 +9,8 @@ use GDO\UI\GDT_Link;
 
 /**
  * Polls working in CLI and Web.
+ * Multiple choice supported.
+ * Optional allowed guest votes.
  * 
  * @author gizmore
  * @version 7.0.1
@@ -21,8 +23,8 @@ final class Module_Poll extends GDO_Module
 	{
 		return [
 			GDO_Poll::class,
-			GDO_Choice::class,
-			GDO_Answer::class,
+			GDO_PollChoice::class,
+			GDO_PollAnswer::class,
 		];
 	}
 	
@@ -33,7 +35,7 @@ final class Module_Poll extends GDO_Module
 	{
 		return [
 			GDT_Checkbox::make('hook_sidebar')->initial('1'),
-			GDT_Checkbox::make('guest_votes')->initial('1'),
+			GDT_Checkbox::make('guest_votes')->initial('0'),
 			GDT_Level::make('level_per_poll')->initial('100'),
 		];
 	}
@@ -47,6 +49,11 @@ final class Module_Poll extends GDO_Module
 	public function onLoadLanguage(): void
 	{
 		$this->loadLanguage('lang/poll');
+	}
+	
+	public function onIncludeScripts(): void
+	{
+		$this->addCSS('css/gdo7-poll.css');
 	}
 	
 	public function onInitSidebar(): void
