@@ -39,14 +39,14 @@ final class CronjobOutcome extends MethodCronjob
 	public function sendMailFor(GDO_Poll $poll, GDO_User $user): void
 	{
 		$mail = Mail::botMail();
-		$mail->setSubject(t('mails_poll_finished', [sitename(), $poll->renderTitle()]));
+		$mail->setSubject(tusr($user, 'mails_poll_finished', [sitename(), $poll->renderTitle()]));
 		$args = [
 			$user->renderUserName(),
 			sitename(),
 			$poll->renderTitle(),
 			$this->renderMailOutcome($poll, $user),
 		];
-		$mail->setBody(t('mailb_poll_finished', $args));
+		$mail->setBody(tusr($user, 'mailb_poll_finished', $args));
 		$mail->sendToUser($user);
 	}
 	
