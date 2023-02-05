@@ -27,7 +27,7 @@ final class GDT_PollAnswer extends GDT_Select
 		return $this->gdo;
 	}
 	
-	public function getChoices()
+	public function getChoices(): array
 	{
 		return $this->getPoll()->getChoices();
 	}
