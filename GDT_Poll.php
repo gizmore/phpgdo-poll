@@ -16,7 +16,7 @@ final class GDT_Poll extends GDT_Object
 	### Expire ###
 	##############
 	public ?bool $open = null;
-	public function open(?bool $open=true): self
+	public function open(?bool $open=true): static
 	{
 		$this->open = $open;
 		return $this;

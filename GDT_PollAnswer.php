@@ -10,7 +10,7 @@ final class GDT_PollAnswer extends GDT_Select
 	
 	use WithGDO;
 	
-	public function defaultLabel(): self
+	public function defaultLabel(): static
 	{
 		return $this->label('your_answer');
 	}
@@ -32,7 +32,7 @@ final class GDT_PollAnswer extends GDT_Select
 		return $this->getPoll()->getChoices();
 	}
 	
-	public function gdo(GDO $gdo=null): self
+	public function gdo(GDO $gdo=null): static
 	{
 		$this->gdoVarInitial($gdo, false);
 		if (!$gdo)

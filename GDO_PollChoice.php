@@ -59,7 +59,7 @@ final class GDO_PollChoice extends GDO
 		return $this->renderTitle();
 	}
 	
-	public function recalculate(GDO_Poll $poll, int $usercount): self
+	public function recalculate(GDO_Poll $poll, int $usercount): static
 	{
 		$count = $this->countChosen();
 		return $this->saveVars([
