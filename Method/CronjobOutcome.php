@@ -2,23 +2,24 @@
 namespace GDO\Poll\Method;
 
 use GDO\Cronjob\MethodCronjob;
-use GDO\Poll\GDO_Poll;
 use GDO\Date\Time;
-use GDO\User\GDO_User;
 use GDO\Mail\Mail;
+use GDO\Poll\GDO_Poll;
+use GDO\User\GDO_User;
 
 /**
  * Send Email to poll creator when finished.
- * 
+ *
  * @author gizmore
  */
 final class CronjobOutcome extends MethodCronjob
 {
+
 	public function runAt(): string
 	{
 		return $this->runDaily(0);
 	}
-	
+
 	public function run()
 	{
 		$today = Time::getDateWithoutTime();
@@ -30,12 +31,12 @@ final class CronjobOutcome extends MethodCronjob
 			$this->runFor($poll);
 		}
 	}
-	
+
 	public function runFor(GDO_Poll $poll): void
 	{
 		$this->sendMailFor($poll, $poll->getCreator());
 	}
-	
+
 	public function sendMailFor(GDO_Poll $poll, GDO_User $user): void
 	{
 		$mail = Mail::botMail();
@@ -49,7 +50,7 @@ final class CronjobOutcome extends MethodCronjob
 		$mail->setBody(tusr($user, 'mailb_poll_finished', $args));
 		$mail->sendToUser($user);
 	}
-	
+
 	private function renderMailOutcome(GDO_Poll $poll, GDO_User $user): string
 	{
 		$outcome = '';

@@ -1,38 +1,38 @@
 <?php
 namespace GDO\Poll;
 
+use GDO\Core\GDO;
 use GDO\Core\GDT_Select;
 use GDO\Core\WithGDO;
-use GDO\Core\GDO;
 
 final class GDT_PollAnswer extends GDT_Select
 {
-	
+
 	use WithGDO;
-	
-	public function defaultLabel(): static
-	{
-		return $this->label('your_answer');
-	}
-	
+
 	protected function __construct()
 	{
 		parent::__construct();
 		$this->icon('vote');
 		$this->emptyInitial('please_vote');
 	}
-	
-	public function getPoll(): GDO_Poll
+
+	public function defaultLabel(): self
 	{
-		return $this->gdo;
+		return $this->label('your_answer');
 	}
-	
+
 	public function getChoices(): array
 	{
 		return $this->getPoll()->getChoices();
 	}
-	
-	public function gdo(GDO $gdo=null): static
+
+	public function getPoll(): GDO_Poll
+	{
+		return $this->gdo;
+	}
+
+	public function gdo(GDO $gdo = null): self
 	{
 		$this->gdoVarInitial($gdo, false);
 		if (!$gdo)
@@ -42,5 +42,5 @@ final class GDT_PollAnswer extends GDT_Select
 		$poll = $this->getPoll();
 		return $this->multiple($poll->isMultipleChoice());
 	}
-	
+
 }

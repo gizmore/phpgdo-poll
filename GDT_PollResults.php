@@ -1,27 +1,21 @@
 <?php
 namespace GDO\Poll;
 
-use GDO\UI\GDT_Container;
 use GDO\Core\WithGDO;
+use GDO\UI\GDT_Container;
 use GDO\UI\GDT_HTML;
-use GDO\Core\Application;
 
 final class GDT_PollResults extends GDT_Container
 {
-	
+
 	use WithGDO;
-	
+
 	protected function __construct()
 	{
 		parent::__construct();
 		$this->vertical();
 	}
-	
-	public function getPoll(): GDO_Poll
-	{
-		return $this->getGDO();
-	}
-	
+
 	public function renderFields(int $renderMode): string
 	{
 		$this->removeFields();
@@ -38,6 +32,11 @@ final class GDT_PollResults extends GDT_Container
 		$back .= '</section>';
 		return $back;
 	}
-	
-	
+
+	public function getPoll(): GDO_Poll
+	{
+		return $this->getGDO();
+	}
+
+
 }

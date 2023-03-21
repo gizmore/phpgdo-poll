@@ -1,65 +1,65 @@
 section.gdt-poll-results {
-	position: relative;
+    position: relative;
 }
 
 section.gdt-poll-results .gdt-container {
-	position: relative;
+    position: relative;
 }
 
 .gdt-poll-outcome {
-	margin-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 .gdt-poll-outcome label {
-	font-weight: bold;
-	text-align: left;
-	display: initial;
+    font-weight: bold;
+    text-align: left;
+    display: initial;
 }
 
 .gdt-poll-outcome table {
-	width: 80%;
+    width: 80%;
 }
 
 .gdt-poll-outcome table td {
-	padding: 0;
+    padding: 0;
 }
 
 .gdt-poll-outcome td:nth-child(odd) {
-	width: 80px;
+    width: 80px;
 }
 
 .gdt-poll-outcome td:nth-child(even) {
-	border: 0;
-	height: 100%;
-	position: relative;
-	vertical-align: center;
-/* 	width: 100%; */
+    border: 0;
+    height: 100%;
+    position: relative;
+    vertical-align: center;
+    /* 	width: 100%; */
 }
 
 .gdt-poll-outcome td:first-child {
-	padding-right: 16px;
-	text-align: right;
+    padding-right: 16px;
+    text-align: right;
 }
 
 .gdt-poll-outcome td:last-child {
-	padding-left: 16px;
+    padding-left: 16px;
 }
 
 .gdt-poll-outcome em {
-	border-radius: 3px;
-	display: block;
-	height: 6px;
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
+    border-radius: 3px;
+    display: block;
+    height: 6px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .gdt-poll-outcome em:first-child {
-	background: rgba(0, 0, 0, 0.1);
-	width: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 
 .gdt-poll-outcome em:last-child {
-	background: aliceblue;
-	background-image: linear-gradient(to right, #ff5a00, #e3a417);
+    background: aliceblue;
+    background-image: linear-gradient(to right, #ff5a00, #e3a417);
 }

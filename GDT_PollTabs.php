@@ -6,7 +6,7 @@ use GDO\UI\GDT_Link;
 
 final class GDT_PollTabs extends GDT_Bar
 {
-	
+
 	protected function __construct()
 	{
 		parent::__construct();
@@ -16,5 +16,5 @@ final class GDT_PollTabs extends GDT_Bar
 			GDT_Link::make('create_poll')->href(href('Poll', 'Create'))->icon('create'),
 		);
 	}
-	
+
 }

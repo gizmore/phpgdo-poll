@@ -5,23 +5,25 @@ use GDO\Core\GDT_Object;
 
 final class GDT_Poll extends GDT_Object
 {
-	
+
+	public ?bool $open = null;
+
+	##############
+	### Expire ###
+	##############
+
 	protected function __construct()
 	{
 		parent::__construct();
 		$this->table(GDO_Poll::table());
 	}
-	
-	##############
-	### Expire ###
-	##############
-	public ?bool $open = null;
-	public function open(?bool $open=true): static
+
+	public function open(?bool $open = true): self
 	{
 		$this->open = $open;
 		return $this;
 	}
-	
+
 	public function validateExpire(GDO_Poll $poll): bool
 	{
 		if ($this->open === true)
@@ -43,5 +45,5 @@ final class GDT_Poll extends GDT_Object
 			return true;
 		}
 	}
-	
+
 }

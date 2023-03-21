@@ -3,23 +3,24 @@ namespace GDO\Poll;
 
 use GDO\Core\GDO_Module;
 use GDO\Core\GDT_Checkbox;
-use GDO\User\GDT_Level;
-use GDO\UI\GDT_Page;
 use GDO\UI\GDT_Link;
+use GDO\UI\GDT_Page;
+use GDO\User\GDT_Level;
 
 /**
  * Polls working in CLI and Web.
  * Multiple choice supported.
  * Optional allowed guest votes.
- * 
- * @author gizmore
+ *
  * @version 7.0.1
+ * @author gizmore
  */
 final class Module_Poll extends GDO_Module
 {
+
 	public int $priority = 40;
-	
-	public function getClasses() : array
+
+	public function getClasses(): array
 	{
 		return [
 			GDO_Poll::class,
@@ -27,7 +28,7 @@ final class Module_Poll extends GDO_Module
 			GDO_PollAnswer::class,
 		];
 	}
-	
+
 	##############
 	### Config ###
 	##############
@@ -39,23 +40,17 @@ final class Module_Poll extends GDO_Module
 			GDT_Level::make('level_per_poll')->initial('100'),
 		];
 	}
-	public function cfgSidebar(): bool { return $this->getConfigValue('hook_sidebar'); }
-	public function cfgGuestVotes(): bool { return $this->getConfigValue('guest_votes'); }
-	public function cfgLevelPerPoll(): int { return $this->getConfigValue('level_per_poll'); }
 
-	############
-	### Init ###
-	############
 	public function onLoadLanguage(): void
 	{
 		$this->loadLanguage('lang/poll');
 	}
-	
+
 	public function onIncludeScripts(): void
 	{
 		$this->addCSS('css/gdo7-poll.css');
 	}
-	
+
 	public function onInitSidebar(): void
 	{
 		GDT_Page::instance()->leftBar()->addFields(
@@ -63,5 +58,15 @@ final class Module_Poll extends GDO_Module
 				->href($this->href('Overview'))->icon('vote'),
 		);
 	}
-	
+
+	############
+	### Init ###
+	############
+
+	public function cfgSidebar(): bool { return $this->getConfigValue('hook_sidebar'); }
+
+	public function cfgGuestVotes(): bool { return $this->getConfigValue('guest_votes'); }
+
+	public function cfgLevelPerPoll(): int { return $this->getConfigValue('level_per_poll'); }
+
 }

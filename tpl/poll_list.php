@@ -1,11 +1,13 @@
 <?php
 namespace GDO\Poll\tpl;
+
+use GDO\Poll\GDO_Poll;
 use GDO\Table\GDT_ListItem;
 use GDO\UI\GDT_Link;
 
-/** @var $gdo \GDO\Poll\GDO_Poll **/
+/** @var $gdo GDO_Poll * */
 
-$li = GDT_ListItem::make('poll_'.$gdo->getID());
+$li = GDT_ListItem::make('poll_' . $gdo->getID());
 $li->gdo($gdo)->creatorHeader();
 $li->titleRaw($gdo->renderTitle());
 

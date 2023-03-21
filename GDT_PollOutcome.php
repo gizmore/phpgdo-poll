@@ -1,17 +1,17 @@
 <?php
 namespace GDO\Poll;
 
-use GDO\UI\GDT_Paragraph;
 use GDO\Core\GDT_Template;
 use GDO\Core\WithGDO;
 use GDO\UI\GDT_Icon;
+use GDO\UI\GDT_Paragraph;
 use GDO\User\GDO_User;
 
 final class GDT_PollOutcome extends GDT_Paragraph
 {
-	
+
 	use WithGDO;
-	
+
 	public function renderHTML(): string
 	{
 		$tVars = [
@@ -20,12 +20,12 @@ final class GDT_PollOutcome extends GDT_Paragraph
 		];
 		return GDT_Template::php('Poll', 'polloutcome_html.php', $tVars);
 	}
-	
+
 	public function getChoice(): GDO_PollChoice
 	{
 		return $this->getGDO();
 	}
-	
+
 	public function renderOwnVoteIcon(): string
 	{
 		$icon = 'question';
@@ -38,4 +38,5 @@ final class GDT_PollOutcome extends GDT_Paragraph
 		}
 		return GDT_Icon::iconS($icon);
 	}
+
 }
