@@ -20,7 +20,7 @@ final class CronjobOutcome extends MethodCronjob
 		return $this->runDaily(0);
 	}
 
-	public function run()
+	public function run(): void
 	{
 		$today = Time::getDateWithoutTime();
 		$polls = GDO_Poll::table()->select()

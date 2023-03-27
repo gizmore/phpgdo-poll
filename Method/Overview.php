@@ -20,7 +20,7 @@ final class Overview extends MethodQueryList
 
 	public function gdoTable(): GDO { return GDO_Poll::table(); }
 
-	public function getTableTitle()
+	public function getTableTitle(): string
 	{
 		return t('link_polls', [
 			$this->getTable()->countItems(),

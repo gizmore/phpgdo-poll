@@ -40,10 +40,7 @@ final class GDT_Poll extends GDT_Object
 				return $this->error('err_poll_only_expired');
 			}
 		}
-		else
-		{
-			return true;
-		}
+		return true;
 	}
 
 }

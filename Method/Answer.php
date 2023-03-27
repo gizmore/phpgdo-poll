@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Poll\Method;
 
+use GDO\Core\GDT;
 use GDO\Core\GDT_Hook;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
@@ -74,7 +75,7 @@ final class Answer extends MethodForm
 			GDT_Submit::make());
 	}
 
-	public function formValidated(GDT_Form $form)
+	public function formValidated(GDT_Form $form): GDT
 	{
 		$poll = $this->getPoll();
 		$user = GDO_User::current();

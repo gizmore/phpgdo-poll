@@ -2,6 +2,7 @@
 namespace GDO\Poll;
 
 use GDO\Core\GDO;
+use GDO\Core\GDT;
 use GDO\Core\GDT_Select;
 use GDO\Core\WithGDO;
 
@@ -32,7 +33,7 @@ final class GDT_PollAnswer extends GDT_Select
 		return $this->gdo;
 	}
 
-	public function gdo(GDO $gdo = null): self
+	public function gdo(?GDO $gdo): GDT
 	{
 		$this->gdoVarInitial($gdo, false);
 		if (!$gdo)
