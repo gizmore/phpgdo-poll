@@ -33,7 +33,7 @@ final class GDT_PollAnswer extends GDT_Select
 		return $this->gdo;
 	}
 
-	public function gdo(?GDO $gdo): GDT
+	public function gdo(?GDO $gdo): static
 	{
 		$this->gdoVarInitial($gdo, false);
 		if (!$gdo)
