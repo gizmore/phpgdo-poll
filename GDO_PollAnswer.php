@@ -17,7 +17,7 @@ final class GDO_PollAnswer extends GDO
 				->where("answer_user={$user->getID()} AND choice_poll={$poll->getID()}")
 				->first()
 				->exec()
-				->fetchValue() === '1';
+				->fetchVar() === '1';
 	}
 
 	public static function hasUserChosen(GDO_User $user, GDO_PollChoice $choice): bool
@@ -48,7 +48,7 @@ final class GDO_PollAnswer extends GDO
 			->joinObject('answer_choice')
 			->where("choice_poll={$poll->getID()}")
 			->exec()
-			->fetchValue();
+			->fetchVar();
 	}
 
 	public static function calculateChoiceCount(GDO_PollChoice $choice): int
