@@ -35,7 +35,7 @@ final class Create extends MethodForm
 		return true;
 	}
 
-	public function isGuestAllowed(): string
+	public function isGuestAllowed(): bool
 	{
 		return false;
 	}
@@ -45,7 +45,7 @@ final class Create extends MethodForm
 		return t('create_poll');
 	}
 
-	public function createForm(GDT_Form $form): void
+	protected function createForm(GDT_Form $form): void
 	{
 		$poll = GDO_Poll::table();
 		$user = GDO_User::current();

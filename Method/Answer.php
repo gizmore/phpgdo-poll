@@ -50,7 +50,7 @@ final class Answer extends MethodForm
 		return false;
 	}
 
-	public function createForm(GDT_Form $form): void
+	protected function createForm(GDT_Form $form): void
 	{
 		$poll = $this->getPoll();
 		$user = GDO_User::current();

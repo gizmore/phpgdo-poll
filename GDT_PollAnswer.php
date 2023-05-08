@@ -23,7 +23,7 @@ final class GDT_PollAnswer extends GDT_Select
 		return $this->label('your_answer');
 	}
 
-	public function getChoices(): array
+	protected function getChoices(): array
 	{
 		return $this->getPoll()->getChoices();
 	}
