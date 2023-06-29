@@ -18,9 +18,9 @@ final class GDT_PollAnswer extends GDT_Select
 		$this->emptyInitial('please_vote');
 	}
 
-	public function defaultLabel(): self
+	public function gdtDefaultLabel(): ?string
 	{
-		return $this->label('your_answer');
+		return 'your_answer';
 	}
 
 	protected function getChoices(): array
