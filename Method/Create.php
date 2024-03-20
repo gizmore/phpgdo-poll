@@ -3,6 +3,7 @@ namespace GDO\Poll\Method;
 
 use GDO\Core\Application;
 use GDO\Core\GDT;
+use GDO\Core\GDT_Hook;
 use GDO\Date\Time;
 use GDO\Form\GDT_AntiCSRF;
 use GDO\Form\GDT_Form;
@@ -107,6 +108,8 @@ final class Create extends MethodForm
 		$user = GDO_User::current();
 		$cost = Module_Poll::instance()->cfgLevelPerPoll();
 		$user->increaseSetting('User', 'level_spent', $cost);
+
+        GDT_Hook::callWithIPC('PollAdded', $poll->getID());
 
 		return $this->message('msg_poll_added', [
 			$pollid,

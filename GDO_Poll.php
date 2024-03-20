@@ -2,6 +2,7 @@
 namespace GDO\Poll;
 
 use GDO\Core\GDO;
+use GDO\Core\GDO_DBException;
 use GDO\Core\GDT_AutoInc;
 use GDO\Core\GDT_Checkbox;
 use GDO\Core\GDT_CreatedAt;
@@ -13,6 +14,7 @@ use GDO\Core\GDT_UInt;
 use GDO\Date\GDT_Date;
 use GDO\Date\Time;
 use GDO\Language\GDT_Language;
+use GDO\UI\GDT_Card;
 use GDO\UI\GDT_Message;
 use GDO\UI\GDT_Title;
 use GDO\User\GDO_User;
@@ -21,10 +23,13 @@ use GDO\User\GDT_Level;
 final class GDO_Poll extends GDO
 {
 
-	public static function numActivePolls(): int
+    /**
+     * @throws GDO_DBException
+     */
+    public static function numActivePolls(): int
 	{
 		$now = Time::getDateWithoutTime();
-		$conditions = "poll_deleted IS NULL AND poll_expires > '{$now}'";
+		$conditions = "poll_deleted IS NULL AND (poll_expires > '{$now}' OR poll_expires IS NULL)";
 		return self::table()->countWhere($conditions);
 	}
 
@@ -48,9 +53,9 @@ final class GDO_Poll extends GDO
 
 			GDT_UInt::make('poll_max_answers')->bytes(1)->notNull()->min(1)->tooltip('choose_multiple_choice')->initial('1')->label('multiple_choice'),
 
-			GDT_Date::make('poll_expires')->notNull()->label('expires'),
+			GDT_Date::make('poll_expires')->label('expires'),
 
-			GDT_Checkbox::make('poll_guests')->initial('0'),
+			GDT_Checkbox::make('poll_guests')->notNull()->initial('0'),
 			GDT_Level::make('poll_level')->label('poll_level')->writeable(true),
 
 			GDT_UInt::make('poll_usercount')->notNull()->initial('0'),
@@ -73,7 +78,12 @@ final class GDO_Poll extends GDO
 		return Time::getAge($this->gdoVar('poll_expires')) > 0;
 	}
 
-	public function isMultipleChoice(): bool
+    public function renderCard(): string
+    {
+        return GDT_Card::make()->render();
+    }
+
+    public function isMultipleChoice(): bool
 	{
 		return $this->getMaxAnswers() > 1;
 	}
@@ -178,5 +188,15 @@ final class GDO_Poll extends GDO
 	{
 		return GDO_PollChoice::getChoices($this, $order);
 	}
+
+    /**
+     * Get all choices for this poll, sorted like added.
+     *
+     * @return GDO_PollChoice[]
+     */
+    public function getChoicesSorted(): array
+    {
+        return GDO_PollChoice::getChoices($this, 'choice_id');
+    }
 
 }
