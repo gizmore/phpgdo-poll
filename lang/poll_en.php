@@ -4,6 +4,8 @@ namespace GDO\Poll\lang;
 return [
 	'module_poll' => 'Polls',
 
+    'poll_subscription' => 'Subscribe new Polls via',
+
 	'link_polls' => '%s Polls',
 
 	# Config

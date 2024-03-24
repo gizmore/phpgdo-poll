@@ -2,6 +2,7 @@
 namespace GDO\Poll;
 
 use GDO\Core\GDO;
+use GDO\Core\GDO_DBException;
 use GDO\Core\GDT_AutoInc;
 use GDO\Core\GDT_Index;
 use GDO\Core\GDT_Percent;
@@ -68,12 +69,15 @@ final class GDO_PollChoice extends GDO
 		return $this->gdoDisplay('choice_percent');
 	}
 
-	public function recalculate(GDO_Poll $poll, int $usercount): self
+    /**
+     * @throws GDO_DBException
+     */
+    public function recalculate(GDO_Poll $poll, int $usercount): self
 	{
 		$count = $this->countChosen();
 		return $this->saveVars([
-			'choice_amount' => $count,
-			'choice_percent' => $count * 100.0 / (float)$usercount,
+			'choice_amount' => (string)$count,
+			'choice_percent' => (string)($count * 100.0 / (float)$usercount),
 		]);
 	}
 

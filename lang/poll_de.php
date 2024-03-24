@@ -4,6 +4,8 @@ namespace GDO\Poll\lang;
 return [
 	'module_poll' => 'Umfragen',
 
+    'poll_subscription' => 'Abboniere Umfragen mit',
+
 	'link_polls' => '%s Umfragen',
 
 	# Config
